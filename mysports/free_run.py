@@ -22,7 +22,7 @@ def gen_freerun_json(run_pid, dis=2, start_point=gps_point(30.8669741312, 121.91
 
 
 def free_run(userid, ses, dis=1, start_point=gps_point(30.8669741312, 121.9183560969)):
-    host = 'http://gxhttp.chinacloudapp.cn'
+    host = 'http://www.sportcampus.cn'
 
     init_data = json.dumps({"initLocation": "", "type": "2", "userid": userid})
     post_data['userid'] = userid

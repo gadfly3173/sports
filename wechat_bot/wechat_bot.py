@@ -2,7 +2,6 @@ import gevent
 from gevent import monkey
 
 monkey.patch_all()
-# noinspection PyPep8
 from logging import Logger
 from wxpy import *
 from traceback import print_exc
@@ -10,37 +9,43 @@ import builtins
 from datetime import datetime, timedelta
 from typing import List
 
-bot = Bot(cache_path=True, console_qr=2)
+bot = Bot(cache_path=True, console_qr=1)
 logger = Logger('sports')
+myFriend = bot.friends()
 
 
-def wxprint(my_bot):
-    def func(x, **kwargs):
-        logger.warning(x)
-        gevent.spawn(my_bot.file_helper.send, x)
-
-    return func
 
 
-builtins.print = wxprint(bot)
+
+
+
 
 from mysports.run import run
 
 red, green = 2, 2
 
 
-@bot.register(bot.file_helper, except_self=False)
+@bot.register(myFriend)
 def bot_start_run(msg):
+    builtins.print = wxprint(bot)
+    def wxprint(my_bot):
+        def func(x, **kwargs):
+            logger.warning(x)
+            gevent.spawn(msg.reply_msg, x)
+            # return x
+        return func
+    
     try:
         if msg.text == '高校体育':
-            bot.file_helper.send("使用方法：帮肥宅跑步 账号 密码")
+            msg.reply_msg("使用方法：帮肥宅跑步 账号 密码 （开始跑步后请不要打开高校体育！！！")
         elif msg.text.startswith("帮肥宅跑步"):
-            print("开始跑步...")
+            msg.reply_msg("开始跑步...")
             userid = msg.text.split(' ')[1]
             passwd = msg.text.split(' ')[2]
             run(userid, passwd, rg=(red, green))
-        else:
-            print('滚一边玩去')
+
+        # else:
+            # msg.reply_msg('滚一边玩去')
     except Exception as e:
         print_exc(e)
 
