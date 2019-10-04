@@ -39,7 +39,7 @@ python3 ./mysports/run.py --debug True
 ```
 git clone https://github.com/FengLi666/sports.git
 cd sports
-pip3 install -r requirement.txt
+pip3 install -r requirements.txt
 export PYTHONPATH='.'
 python3 ./wechat_bot/wechat_bot.py
 ```
@@ -47,4 +47,4 @@ python3 ./wechat_bot/wechat_bot.py
 
 ---
 
-感谢 @RyuBAI 
+感谢 @RyuBAI
