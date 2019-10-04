@@ -15,10 +15,10 @@ def login(mobile, psd):
 
     # get cookie
     data = r'{}'
-    s.get(host + '/api/configuration/ n', params={'sign': get_md5_code(data), 'data': data})
+    s.get(host + '/api/configuration/apiConfig', params={'sign': get_md5_code(data), 'data': data})
 
     login_data = json.dumps(
-        {"info": headers['uuid'], "mobile": str(mobile), "password": str(psd), "type": "HUAWEIMLA-AL10"})
+        {"info": headers['uuid'], "mobile": str(mobile), "password": str(psd), "type": "SM-G9600"})
 
     login_res = s.get(host + '/api/reg/login', params={'sign': get_md5_code(login_data), 'data': login_data})
     login_rd = login_res.json()
