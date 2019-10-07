@@ -266,9 +266,9 @@ class _Main:
 
         ###########################     开始托盘程序嵌入     #####################################
         self.root = window
-        icons = os.getcwd()+r'\robot.ico'
-        print(icons)
-        hover_text = "智能对话小助手"  # 悬浮于图标上方时的提示
+        icons = os.getcwd()+r'\favicon.ico'
+        # print(icons)
+        hover_text = "一键快跑"  # 悬浮于图标上方时的提示
         menu_options = ()
         self.sysTrayIcon = SysTrayIcon(
             icons, hover_text, menu_options, on_quit=self.exit, default_menu_index=1)
@@ -279,7 +279,7 @@ class _Main:
         self.root.resizable(0, 0)
         self.root.mainloop()
 
-    def switch_icon(self, _sysTrayIcon, icons='D:\\2.ico'):
+    def switch_icon(self, _sysTrayIcon, icons='favicon.ico'):
         _sysTrayIcon.icon = icons
         _sysTrayIcon.refresh_icon()
         # 点击右键菜单项目会传递SysTrayIcon自身给引用的函数，所以这里的_sysTrayIcon = self.sysTrayIcon
